@@ -25,7 +25,3 @@ class ObsidianMystParser(MystParser):
             # specified in the sphinx configuration
             tokens = [Token("front_matter", "", 0, content="{}", map=[0, 0])] + tokens
         parser.renderer.render(tokens, parser.options, env)
-
-
-
-    
