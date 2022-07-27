@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: sphinx-obsidian
+Version: 0.0.1
+Summary: An Myst-Parser 'extension' to enable Obsidian MD to be compiled in Sphinx
+Home-page: https://docs.macq.eu
+Author: BE
+Author-email: bernard.etiennot@macq.eu
+License: MIT
+Project-URL: Documentation, https://docs.macq.eu
+Keywords: Obsidian documentation
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: sphinx
+License-File: LICENSE
+
+# sphinx-obsidian
+Add capabilities to manage Obsidian MD in Sphinx
