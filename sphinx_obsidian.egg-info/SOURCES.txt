@@ -2,7 +2,6 @@ LICENSE
 MANIFEST.in
 README.md
 pyproject.toml
-setup.py
 sphinx_obsidian/__init__.py
 sphinx_obsidian/main.py
 sphinx_obsidian/sphinx_parser.py

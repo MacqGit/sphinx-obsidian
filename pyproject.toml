@@ -1,3 +1,53 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "sphinx_obsidian"
+version = "0.0.2"
+description = ""
+authors = [{name = "Bernard Etiennot", email = "b.etiennot@gmail.com"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Sphinx :: Extension",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup",
+]
+
+keywords = [
+    "markdown",
+    "lexer",
+    "parser",
+    "development",
+    "docutils",
+    "sphinx",
+    "obsidian",
+]
+
+packages = [
+   {include = "wikilinks", from = "./sphinx_obsidian"},
+]
+
+requires-python = ">=3.7"
+dependencies = [
+    "docutils>=0.15,<0.19",
+    "jinja2", # required for substitutions, but let sphinx choose version
+    "markdown-it-py>=1.0.0,<3.0.0",
+    "mdit-py-plugins~=0.3.0",
+    "pyyaml",
+    "sphinx>=4,<6",
+    "typing-extensions",
+    "myst-parser>=0.18.0",
+]

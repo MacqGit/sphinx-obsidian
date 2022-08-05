@@ -1,10 +1,15 @@
-from myst_parser.sphinx_parser import MystParser
-from sphinx_obsidian.main import create_md_parser
-from docutils import nodes
-from myst_parser.sphinx_renderer import SphinxRenderer
-from markdown_it.token import Token
+from myst_parser.parsers.sphinx_ import MystParser
+
+from myst_parser.mdit_to_docutils.sphinx_ import SphinxRenderer, create_warning
+from myst_parser.config.main import (
+    MdParserConfig,
+    TopmatterReadError,
+    merge_file_level,
+    read_topmatter,
+)
 
 from docutils import nodes
+from sphinx_obsidian.main import create_md_parser
 
 class ObsidianMystParser(MystParser):
     
@@ -15,13 +20,21 @@ class ObsidianMystParser(MystParser):
         :param document: The root docutils node to add AST elements to
 
         """
-        config = document.settings.env.myst_config
+        # get the global config
+        config: MdParserConfig = document.settings.env.myst_config
+
+        # update the global config with the file-level config
+        try:
+            topmatter = read_topmatter(inputstring)
+        except TopmatterReadError:
+            pass  # this will be reported during the render
+        else:
+            if topmatter:
+                warning = lambda wtype, msg: create_warning(  # noqa: E731
+                    document, msg, line=1, append_to=document, subtype=wtype
+                )
+                config = merge_file_level(config, topmatter, warning)
+
         parser = create_md_parser(config, SphinxRenderer)
         parser.options["document"] = document
-        env: dict = {}
-        tokens = parser.parse(inputstring, env)
-        if not tokens or tokens[0].type != "front_matter":
-            # we always add front matter, so that we can merge it with global keys,
-            # specified in the sphinx configuration
-            tokens = [Token("front_matter", "", 0, content="{}", map=[0, 0])] + tokens
-        parser.renderer.render(tokens, parser.options, env)
+        parser.render(inputstring)

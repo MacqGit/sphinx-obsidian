@@ -1,10 +1,13 @@
-"""This module holds the ``create_md_parser`` function, which creates a parser from the config.
+"""This module holds the ``create_md_parser`` function,
+which creates a parser from the config.
 """
+from __future__ import annotations
+
 from typing import Callable
 
-from myst_parser.main import MdParserConfig
+from myst_parser.config.main import MdParserConfig
 from markdown_it import MarkdownIt
-from markdown_it.renderer import RendererHTML, RendererProtocol
+from markdown_it.renderer import RendererProtocol
 from mdit_py_plugins.amsmath import amsmath_plugin
 from mdit_py_plugins.anchors import anchors_plugin
 from mdit_py_plugins.colon_fence import colon_fence_plugin
