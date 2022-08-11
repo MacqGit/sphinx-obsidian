@@ -1,8 +1,0 @@
-docutils<0.19,>=0.15
-jinja2
-markdown-it-py<3.0.0,>=1.0.0
-mdit-py-plugins~=0.3.0
-pyyaml
-sphinx<6,>=4
-typing-extensions
-myst-parser>=0.18.0
